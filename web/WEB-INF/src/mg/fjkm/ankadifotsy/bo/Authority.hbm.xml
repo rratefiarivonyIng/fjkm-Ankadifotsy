@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Authority" table="AUTHORITIES">
+		<id	column="ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<property name="login" column="USR_LOGIN" not-null="true"/>
+		<property name="role" column="AUTHORITY" not-null="true"/>
+		<many-to-one name="user" column="USER_ID" class="User" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Diakona" table="DIAKONA">
+		<id	column="DIAKONA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<property name="samihafa" column="DIAKONA_SAMIHAFA" />
+		<property name="nisaraBady" column="DIAKONA_NISARABADY" />
+
+		<property name="isaZanakaLahy" column="DIAKONA_ZANAKA_LAHY" />
+		<property name="isaZanakaVavy" column="DIAKONA_ZABAKA_VAVY" />
+		<property name="isaZanakaVitaBatisa" column="DIAKONA_ZANAKA_BATISA" />
+		<property name="isaZanakaMpandray" column="DIAKONA_ZANAKA_MPANDRAY" />
+
+		<many-to-one column="MPIVAVAKA_ID" name="mpivavaka" class="Mpivavaka" not-null="true"/>
+		<many-to-one column="FITANDREMANA_ID" name="fitandremana" class="Fitandremana" not-null="true"/>
+		<many-to-one column="TAOMPANOMPOANA_ID" name="taomPanompoana" class="TaomPanompoana" not-null="true"/>
+
+		<!-- info de création  -->
+		<property name="dateCreation" column="DATECREATION" type="date" not-null="true"/>
+		<many-to-one column="USERCREATOR" name="userCreator" class="User" not-null="true"/>
+		
+		<!-- info de modification  -->
+		<property name="dateLastModification" column="DATEMODIF" type="date"/>
+		<many-to-one column="USERMODIF" name="userLastModification" class="User" />
+
+	</class>
+</hibernate-mapping>

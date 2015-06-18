@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Fitandremana" table="FITANDREMANA">
+		<id	column="FITANDREMANA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<many-to-one column="SYNODAMPA_ID" name="synodamParitra" class="SynodamParitra" not-null="true"/>				
+		
+		<property name="label" column="FITANDREMANA_LABEL" not-null="true"/>		
+		
+		<property name="description" column="FITANDREMANA_DESCR" />		
+
+		<property name="adresse" column="FITANDREMANA_ADRESSE" />		
+
+	</class>
+</hibernate-mapping>

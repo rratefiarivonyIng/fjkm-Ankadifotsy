@@ -1,0 +1,1 @@
+<center><strong><font color="red" size="16">${message}</font></strong></center>

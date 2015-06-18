@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Tranga" table="TRANGA">
+		<id	column="TRANGA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<property name="daty" column="TRANGA_DATY" not-null="true"/>
+		<property name="laharana" column="TRANGA_LAHARANA" not-null="true" unique="true"/>		
+
+		<many-to-one name="fitandremana" column="FITANDREMANA_ID" class="Fitandremana" not-null="true" />		
+		<many-to-one column="KARAZATRANGA_ID" name="karazaTranga" class="KarazaTranga" />
+		<many-to-one column="MPIVAVAKA_ID" name="mpivavaka" class="Mpivavaka" />
+		
+		<!-- info de création  -->
+		<property name="dateCreation" column="DATECREATION" type="date" not-null="true"/>
+		<many-to-one column="USERCREATOR" name="userCreator" class="User" not-null="true"/>
+		
+		<!-- info de modification  -->
+		<property name="dateLastModification" column="DATEMODIF" type="date"/>
+		<many-to-one column="USERMODIF" name="userLastModification" class="User" />
+		
+	</class>
+</hibernate-mapping>

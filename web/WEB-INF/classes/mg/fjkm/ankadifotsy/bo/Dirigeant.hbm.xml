@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.dgi.nif.bo">
+	<class name="Dirigeant" table="DIRIGEANTS">
+		<id	column="ID_DIRIGEANTS"	name="id">
+			<generator class="sequence">
+				<param name="sequence">seq_dirigeants</param>
+			</generator>
+		</id>	
+
+		<many-to-one column="ID_ETABLISSEMENTS" name="Etablissement" class="Etablissement" not-null="true"/>
+		<many-to-one column="ID_COMMUNE" name="commune" class="Commune" />		
+		<many-to-one column="ID_REGION" name="region" class="Region" />		
+
+		<property name="numero" column="DIR_NUMERO"/>
+		<property name="nom" column="DIR_NOM" not-null="true"/>
+		<property name="fonction" column="DIR_FONCTION" not-null="true"/>
+		<property name="passeport" column="DIR_PASSEPORT" />
+		<property name="cin" column="DIR_CIN" />
+		<property name="adresse" column="DIR_ADRESSE" not-null="true"/>
+		<property name="active" column="DIR_ACTIVITE" />
+		<property name="debutExercice" column="DIR_DEBUT_EXERCICE" type="timestamp" />
+		<property name="dateCessation" column="DIR_DATECESSATION" type="timestamp" />
+		<property name="resident" column="DIR_RESIDENT" not-null="true"/>
+		<property name="email" column="DIR_EMAIL" />		
+	
+	</class>
+</hibernate-mapping>

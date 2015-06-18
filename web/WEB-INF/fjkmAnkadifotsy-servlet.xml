@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--  
+  - Application context definition for "springapp" DispatcherServlet.  
+  -->
+<beans>    
+	<bean id="specificViewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+		<property name="order" value="1" />
+		<property name="basename" value="views" />
+	</bean>
+	
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
+        <property name="prefix"><value>/jsp/</value></property>
+        <property name="suffix"><value>.jsp</value></property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename"><value>messages</value></property>
+    </bean>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+				<prop key="/secure/editParameter.htm">EditParameterController</prop>
+				<prop key="/secure/index.htm">AccesFkmAnkadifotsy</prop>
+
+				<prop key="/admin/editFifidianana.htm">EditFifidiananaController</prop>
+				<prop key="/admin/initFifidianana.htm">InitFifidiananaController</prop>
+				<prop key="/admin/editVato.htm">EditVatoController</prop>				
+				<prop key="/admin/ip.htm">ShowAdminIpController</prop>
+				<prop key="/admin/addIp.htm">AddIpController</prop>				
+				<prop key="/admin/listIp.htm">ListIpController</prop>				
+				<prop key="/admin/deleteIp.htm">RemoveIpController</prop>
+				<prop key="/admin/editIp.htm">EditIpController</prop>
+
+				<prop key="/secure/editTranga.htm">EditTrangaController</prop>
+				<prop key="/secure/searchFifidianana.htm">SearchFifidiananaController</prop>
+				<prop key="/secure/fanamarinanaVato.htm">SearchVatoController</prop>
+				<prop key="/secure/editChristian.htm">EditChristianController</prop>
+				<prop key="/secure/editDiakona.htm">EditDiakonaController</prop>
+				<prop key="/secure/editMirotsakaFidiana.htm">EditMirotsakaFidianaController</prop>
+				<prop key="/secure/searchChristian.htm">SearchChristianController</prop>
+				<prop key="/secure/searchChristianAjax.htm">SearchChristianAjaxController</prop>
+				<prop key="/secure/listChristian.htm">ListChristianController</prop>
+				<prop key="/secure/listMirotsakaFidiana.htm">ListMirotsakaFidianaAjaxController</prop>
+				<prop key="/secure/listFaranyMirotsakaFidiana.htm">ListMirotsakaFidiana2ColonnesAjaxController</prop>
+				<prop key="/secure/selectFifidianana.htm">SelectFifidiananaController</prop>
+				<prop key="/secure/attributeLaharanaMirotsakaFidiana.htm">AttributeLaharanaMirotsakaFidianaController</prop>
+				<prop key="/secure/initManisaVato.htm">InitManisaVatoController</prop>				
+				<prop key="/secure/manisaVato.htm">ManisaVatoController</prop>				
+				<prop key="/admin/manisaVato.htm">ManisaVatoController</prop>				
+				<prop key="/secure/vokatraTapatapany.htm">VokatraTapatapanyController</prop>				
+				<prop key="/admin/vokatraTapatapany.htm">VokatraTapatapanyController</prop>				
+				<prop key="/secure/vokatraFifidianana.htm">VokatraFifidiananaController</prop>				
+				<prop key="/secure/manovaTenyMiafina.htm">MiseAJourPasswordController</prop>				
+				<prop key="/secure/mandrotsaBato.htm">MandrotsaBatoController</prop>				
+				<prop key="/secure/uploadPhoto.htm">UploadPhotoController</prop>				
+												
+				<!-- ajax : autocompletion -->							
+				<prop key="/secure/mpivavakaAutoCompletion.htm">AutoCompletionMpivavakaController</prop>
+				<prop key="/secure/antonAsaAutoCompletion.htm">AutoCompletionAntonAsaController</prop>
+				<prop key="/secure/firaisanaAutoCompletion.htm">AutoCompletionFiraisanaController</prop>
+				<prop key="/secure/fitandremanaAutoCompletion.htm">AutoCompletionFitandremanaController</prop>
+				<prop key="/secure/faritraAutoCompletion.htm">AutoCompletionFaritraController</prop>				
+				<prop key="/secure/karazamPifidiananaAutoCompletion.htm">AutoCompletionKarazamPifidiananaController</prop>				
+				<prop key="/admin/karazamPifidiananaAutoCompletion.htm">AutoCompletionKarazamPifidiananaController</prop>				
+				<prop key="/secure/taomPanompoanaAutoCompletion.htm">AutoCompletionTaomPanompoanaController</prop>				
+				<prop key="/admin/taomPanompoanaAutoCompletion.htm">AutoCompletionTaomPanompoanaController</prop>				
+				<prop key="/firaisanaAutoCompletion.htm">AutoCompletionFiraisanaController</prop>
+				<prop key="/faritraAutoCompletion.htm">AutoCompletionFaritraController</prop>				
+				<prop key="/centreFiscalAutoCompletion.htm">AutoCompletionCentreFiscalController</prop>
+				<prop key="/communeAutoCompletion.htm">AutoCompletionCommuneController</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- les contrôleurs de l'application-->
+    
+    
+    <bean id="UploadPhotoController" class="mg.fjkm.ankadifotsy.controller.UploadPhotoController">
+		<property name="formView" value="secure/photoUpload" />
+		<property name="successView" value="secure/addChristian" />
+ 
+    	<property name="commandName" value="formUploadPhoto"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormUploadPhoto"/>
+
+		<property name="validator">
+			<bean class="mg.fjkm.ankadifotsy.form.FileUploadValidator" />
+		</property>
+	</bean>
+	
+ 	<bean id="AccesFkmAnkadifotsy" class="mg.fjkm.ankadifotsy.controller.AccesFjkmAnkadifotsyController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AttributeLaharanaMirotsakaFidianaController" class="mg.fjkm.ankadifotsy.controller.AttributeLaharanaMirotsakaFidianaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="ListChristianController" class="mg.fjkm.ankadifotsy.controller.ListChristianController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="ListMirotsakaFidianaAjaxController" class="mg.fjkm.ankadifotsy.controller.ListMirotsakaFidianaAjaxController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="ListMirotsakaFidiana2ColonnesAjaxController" class="mg.fjkm.ankadifotsy.controller.ListMirotsakaFidiana2ColonnesAjaxController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="SelectFifidiananaController" class="mg.fjkm.ankadifotsy.controller.SelectFifidiananaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="trangaValidator" class="mg.fjkm.ankadifotsy.form.TrangaValidator" singleton="true"/>
+ 	
+ 	<bean id="formTranga" class="mg.fjkm.ankadifotsy.form.FormTranga" singleton="true"/>
+ 	
+	<bean id="EditTrangaController" class="mg.fjkm.ankadifotsy.controller.EditTrangaController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formTranga"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormTranga"/>
+        <property name="validator"><ref bean="trangaValidator"/></property>
+	    <property name="formView" value="secure/editTranga"/>
+	    <property name="successView" value="index.htm"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="InitManisaVatoController" class="mg.fjkm.ankadifotsy.controller.InitManisaVatoController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="EditVatoController" class="mg.fjkm.ankadifotsy.controller.EditVatoController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+
+	<bean id="ManisaVatoController" class="mg.fjkm.ankadifotsy.controller.ManisaVatoController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="MandrotsaBatoController" class="mg.fjkm.ankadifotsy.controller.MandrotsaBatoController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="VokatraTapatapanyController" class="mg.fjkm.ankadifotsy.controller.VokatraTapatapanyController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="VokatraFifidiananaController" class="mg.fjkm.ankadifotsy.controller.VokatraFifidiananaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<!-- 
+ 	<bean id="formManisaVato" class="mg.fjkm.ankadifotsy.form.FormManisaVato" singleton="false"/>
+ 	
+	<bean id="ManisaVatoController" class="mg.fjkm.ankadifotsy.controller.ManisaVatoController">
+    	<property name="sessionForm" value="false"/>
+    	<property name="commandName" value="formManisaVato"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormManisaVato"/>
+	    <property name="formView" value="secure/manisaVato"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+	-->
+	
+ 	<bean id="christianValidator" class="mg.fjkm.ankadifotsy.form.ChristianValidator" singleton="true">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+ 	
+ 	<bean id="formChristian" class="mg.fjkm.ankadifotsy.form.FormChristian" singleton="true"/>
+ 	
+	<bean id="EditChristianController" class="mg.fjkm.ankadifotsy.controller.EditChristianController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formChristian"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormChristian"/>
+        <property name="validator"><ref bean="christianValidator"/></property>
+	    <property name="formView" value="secure/addChristian"/>
+	    <property name="successView" value="index.htm"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+ 	<bean id="formParameter" class="mg.fjkm.ankadifotsy.form.FormParameter" singleton="true"/>
+ 	<bean id="parameterValidator" class="mg.fjkm.ankadifotsy.form.FormParameterValidator" singleton="true"/>
+ 	
+	<bean id="EditParameterController" class="mg.fjkm.ankadifotsy.controller.EditParameterController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formParameter"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormParameter"/>
+        <property name="validator"><ref bean="parameterValidator"/></property>
+	    <property name="formView" value="admin/editParameter"/>
+	    <property name="successView" value="index.htm"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+ 	<bean id="formFifidianana" class="mg.fjkm.ankadifotsy.form.FormFifidianana" singleton="true"/>
+ 	<bean id="fifidiananaValidator" class="mg.fjkm.ankadifotsy.form.FormFifidiananaValidator" singleton="true"/>
+ 	
+	<bean id="EditFifidiananaController" class="mg.fjkm.ankadifotsy.controller.EditFifidiananaController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formFifidianana"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormFifidianana"/>
+        <property name="validator"><ref bean="fifidiananaValidator"/></property>
+	    <property name="formView" value="secure/editFifidianana"/>
+	    <property name="successView" value="index.htm"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="InitFifidiananaController" class="mg.fjkm.ankadifotsy.controller.InitFifidiananaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	    <property name="formView" value="secure/initFifidianana"/>		
+    	<property name="commandName" value="formFifidianana"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormFifidianana"/>
+	</bean>
+
+ 	<bean id="diakonaValidator" class="mg.fjkm.ankadifotsy.form.DiakonaValidator" singleton="true">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="formDiakona" class="mg.fjkm.ankadifotsy.form.FormDiakona" singleton="true"/>
+ 	
+	<bean id="EditDiakonaController" class="mg.fjkm.ankadifotsy.controller.EditDiakonaController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formDiakona"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormDiakona"/>
+        <property name="validator"><ref bean="diakonaValidator"/></property>
+	    <property name="formView" value="secure/editDiakona"/>
+	    <property name="successView" value="index.htm"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+ 	<bean id="formMirotsakaFidiana" class="mg.fjkm.ankadifotsy.form.FormMirotsakaFidiana" singleton="true"/>
+ 	
+	<bean id="EditMirotsakaFidianaController" class="mg.fjkm.ankadifotsy.controller.EditMirotsakaFidianaController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formMirotsakaFidiana"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormMirotsakaFidiana"/>
+	    <property name="formView" value="secure/editMirotsakaFidiana"/>
+	    <property name="successView" value="index.htm"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+ 	<bean id="formSearchChristian" class="mg.fjkm.ankadifotsy.form.FormSearchChristian" singleton="true"/>
+
+	<bean id="SearchChristianController" class="mg.fjkm.ankadifotsy.controller.SearchChristianController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formSearchChristian"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormSearchChristian"/>
+	    <property name="formView" value="secure/searchChristian"/>
+	    <property name="successView" value="secure/listChristian"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+ 
+	<bean id="SearchChristianAjaxController" class="mg.fjkm.ankadifotsy.controller.SearchChristianAjaxController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>	
+ 
+ 	<bean id="formSearchFifidianana" class="mg.fjkm.ankadifotsy.form.FormSearchFifidianana" singleton="true"/>
+
+	<bean id="SearchFifidiananaController" class="mg.fjkm.ankadifotsy.controller.SearchFifidiananaController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formSearchFifidianana"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormSearchFifidianana"/>
+	    <property name="formView" value="secure/searchFifidianana"/>
+	    <property name="successView" value="secure/listFifidianana"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="SearchVatoController" class="mg.fjkm.ankadifotsy.controller.SearchVatoController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formSearchVato"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormSearchVato"/>
+	    <property name="formView" value="secure/searchVato"/>
+	    <property name="successView" value="secure/showVato"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+ 
+ 	<bean id="IndexController" class="mg.fjkm.ankadifotsy.controller.IndexController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+	 	
+ 	<bean id="ExportResultatController" class="mg.fjkm.ankadifotsy.controller.ExportResultatController"/> 	
+	
+	
+    <bean id="motDePasseValidator" class="mg.fjkm.ankadifotsy.form.FormMotDePasseValidator" />
+
+	<bean id="MiseAJourPasswordController" class="mg.fjkm.ankadifotsy.controller.MiseAJourPasswordController">
+    	<property name="sessionForm" value="true"/>
+    	<property name="commandName" value="formModificationPassword"/>
+    	<property name="commandClass" value="mg.fjkm.ankadifotsy.form.FormMotDePasse"/>
+        <property name="validator"><ref bean="motDePasseValidator"/></property>
+	    <property name="formView" value="secure/modifyPassword"/>
+	    <property name="successView" value="index.htm"/>
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="ShowAdminIpController" class="mg.fjkm.ankadifotsy.controller.ShowAdminIpController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+	 
+	<bean id="ListIpController" class="mg.fjkm.ankadifotsy.controller.ListIpController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="AddIpController" class="mg.fjkm.ankadifotsy.controller.AddIpController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="RemoveIpController" class="mg.fjkm.ankadifotsy.controller.RemoveIpController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+	<bean id="EditIpController" class="mg.fjkm.ankadifotsy.controller.EditIpController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+	</bean>
+
+ 	<bean id="AutoCompletionAntonAsaController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionAntonAsaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AutoCompletionMpivavakaController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionMpivavakaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AutoCompletionKarazamPifidiananaController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionKarazamPifidiananaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AutoCompletionTaomPanompoanaController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionTaomPanompoanaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AutoCompletionFitandremanaController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionFitandremanaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AutoCompletionCentreFiscalController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionCentreFiscalController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AutoCompletionCommuneController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionCommuneController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+
+ 	<bean id="AutoCompletionFiraisanaController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionFiraisanaController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+ 	
+ 	<bean id="AutoCompletionFaritraController" class="mg.fjkm.ankadifotsy.controller.AutoCompletionFaritraController">
+		<property name="fjkmAnkadifotsyService" ref="fjkmAnkadifotsyService"/>
+ 	</bean>
+ 	 	
+</beans>

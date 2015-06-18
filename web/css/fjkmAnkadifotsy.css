@@ -1,0 +1,237 @@
+body			{ font-family: "Arial Unicode MS"; font-size: 12px;}
+p				{ font-family: "Arial Unicode MS"; font-size: 11px; }
+table			{ font-family: Arial Unicode MS; font-size: 11px; }
+.blanc			{ font-family: Arial Unicode MS; font-size: 12px;
+				  background-color:#FFFFFF;}
+td				{ font-family: Arial Unicode MS; font-size: 12px; }
+th				{ font-family: Arial Unicode MS; font-size: 11px; }
+tr				{ font-family: Arial Unicode MS; font-size: 11px; }
+
+.menu1			{ font-family: Arial Unicode MS; font-size: 11px; font-weight: bold;   color: #FFFFFF; }
+.menu2			{ font-family: Arial Unicode MS; font-size: 10px; font-weight: bold;   color: #FFFFFF; }
+.menu3			{ font-family: Arial Unicode MS; font-size: 11px; font-weight: normal; color: #FFCC00; }
+.footermenu		{ font-family: Arial Unicode MS; font-size: 9px; font-weight: normal; color: #FFFFFF; }
+
+.dgiboxtitle	{ font-family: Arial Unicode MS; font-size: 11px; font-weight: bold;   color: #FFCC00; }
+.dgiboxtext		{ font-family: Arial Unicode MS; font-size: 9px;  font-weight: normal; color: #000000; }
+.dgiboxmarquee	{ font-family: Arial Unicode MS; font-size: 11px; font-weight: normal; color: #FFFFFF; }
+
+.boxtitle		{ font-family: Arial Unicode MS; font-size: 12px; font-weight: bold; color: #336633; }
+.boxlink		{ font-family: Arial Unicode MS; font-size: 12px; font-weight: bold; color: #006600; }
+
+.title1			{ font-family: Verdana, tahoma; font-size: 13px; font-weight: bold; color: #26337e; text-align: center;}
+.title2			{ font-family: "Arial Unicode MS"; font-size: 15px; font-weight: bold; color: #26337e; }
+.title3			{ font-family: Arial Unicode MS; font-size: 12px; font-weight: bold; color: #26337e }
+.title4			{ font-family: "Arial Unicode MS"; font-size: 11px; font-weight: bold; color: #101d47; }
+.title5			{ font-family: "Arial Unicode MS"; font-size: 12px; font-weight: bold; color: #023c5e; }
+.title6			{ font-family: Arial Unicode MS; font-size: 12px; color: #616161; }
+
+
+.little			{ font-family: Arial Unicode MS; font-size:  9px; font-weight: normal; color: #023C5E; }
+
+.normal			{ font-family: "Arial Unicode MS"; font-size: 18px; font-weight: normal; color: #000000;  }
+
+.boxform		{ font-family: Arial Unicode MS; font-size: 9px; font-weight: normal; color: #000000; }
+
+.copyright		{ font-family: Arial Unicode MS; font-size: 9px; font-weight: normal; color: #FFFFFF; }
+
+A:link 					{ color: #676baf; TEXT-DECORATION: none  }
+A:active				{ color: #151ca0;TEXT-DECORATION: none }
+A:visited				{ color: #e0701e;TEXT-DECORATION: none }
+A:hover					{ TEXT-DECORATION: underline }
+
+.pageLink {
+	font-size:		11px;
+	font-family: 	verdana, sans-serif;
+	padding-right: 	5px;
+	padding-left: 	5px;
+	font-weight: 	normal;
+}
+
+.pageLinkSelected {
+	font-size:		11px;
+	font-family: 	verdana, sans-serif;
+	padding-right: 	5px;
+	padding-left: 	5px;
+	font-weight: 	bold;
+}
+
+.txtbutton	{ font-size:11px; font-family: verdana, sans-serif; background: #D6E7EF; border-bottom: 1px solid #7F9DB9; border-right: 1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-top: 1px solid #7F9DB9; color: #000066; cursor: hand; padding-right: 3px; padding-left: 3px; padding-top: 2px; padding-bottom: 2px; height: 20px; font-weight: normal;}
+.button	{
+	font-size:		11px;
+	font-family: 	verdana, sans-serif;
+	padding-right: 	5px;
+	padding-left: 	5px;
+	padding-top: 	2px;
+	padding-bottom: 2px;
+	font-weight: 	normal;
+}
+.button:link 		{ TEXT-DECORATION: none }
+.button:active		{ TEXT-DECORATION: none }
+.button:visited		{ TEXT-DECORATION: none }
+.button:hover		{ TEXT-DECORATION: none }
+
+.buttonMiverina	{
+	font-size:		11px;
+	font-family: 	verdana, sans-serif;
+	padding-right: 	5px;
+	padding-left: 	5px;
+	padding-top: 	2px;
+	padding-bottom: 2px;
+	font-weight: 	normal;
+	background:#FF3300;
+}
+
+ul#tabnav {
+    font: bold 11px verdana, arial, sans-serif;
+    list-style-type: none;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #6c6;
+    margin: 0;
+    width:920px;
+}
+
+ul#tabnav li {
+    float: left;
+    height: 21px;
+    background-color: #D6E7EF;
+    margin: 2px 2px 0 2px;
+    border: 1px solid #6c6;
+    width:105px;
+}
+
+ul#tabnav li#disconnect {
+    font: bold 11px tahoma, arial, sans-serif;
+    background-color: #FF3333;
+    border: 0px solid #FFF;
+}
+
+ul#tabnav li#connect {
+    font: bold 11px tahoma, arial, sans-serif;
+    border: 0px solid #FFF;
+    background-color: #fff;
+    padding-top: 3px;
+    width:120px;
+}
+
+ul#tabnav li.active {
+    border-bottom: 1px solid #fff;
+    background-color: #fff;
+    width:105px;
+}
+
+ul#tabnav li.active a {
+    color: #000;
+}
+
+#tabnav a {
+    float: left;
+    display: block;
+    color: #000066;
+    text-decoration: none;
+    padding: 4px;
+}
+
+#tabnav a:hover {
+    background: #FFCCFF;
+    width:97px;
+}
+
+label {
+	float: left;
+	text-align: right;
+}
+ 
+input {
+float: left;
+text-align: left;
+} 
+
+.inputleft {
+float: left;
+text-align: left;
+} 
+
+.inputcenter {
+align: center;
+float: center;
+text-align: center;
+} 
+
+.inputright {
+align: right;
+float: right;
+text-align: right;
+} 
+
+.tabgrise {
+border-width:1px; 
+border-style:solid; 
+border-color:black; 
+background-color:silver;
+}
+
+.tabjaune{
+border-width:1px; 
+border-style:solid; 
+border-color:black; 
+background-color:yellow;
+}
+
+.tabliste {
+border-collapse:collapse;
+
+border:1px solid black;
+border-width:1px; 
+border-style:solid; 
+border-color:black; 
+}
+
+.tabcaption {
+font-weight:bold;
+text-align:center;
+border-width:1px; 
+border-style:solid; 
+border-color:black;
+}
+
+.tabcontenu {
+font-weight: normal;
+text-align:center;
+border-width:1px; 
+border-style:solid; 
+border-color:black;
+}
+
+.boxmarque { 
+font-family: Verdana, tahoma; 
+font-size: 20px; 
+font-weight: bold; 
+color: #FFFFFF; 
+text-align: center;
+border:1px solid black;
+border-width:1px; 
+border-style:solid; 
+border-color:black;
+background-color:blue;
+}
+
+.infobulle{
+	position: absolute;	
+	visibility : hidden;
+	border: 1px solid Black;
+	padding: 10px;
+	font-family: Verdana, Arial;
+	font-size: 10px;
+	background-color: #FFFFCC;
+}
+
+#pejyId{
+font-weight:bold;
+text-align:center;
+font-family: Arial Unicode MS; 
+font-size: 15px;
+color: #336633;
+}
+
+.impression   { font-family: Arial Unicode MS; font-size: 18px; font-weight: bold;}

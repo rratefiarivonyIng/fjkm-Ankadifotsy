@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Mpivavaka" table="MPIVAVAKA">
+		<id	column="MPIVAVAKA_ID"	name="id">
+			<generator class="increment"/>
+		</id>	
+
+		<many-to-one column="FITANDREMANA_ID" name="fitandremana" class="Fitandremana" />
+		<many-to-one column="FITANDREMANA_NIAVIANA_ID" name="fitandremanaNiaviana" class="Fitandremana" />
+		
+		<property name="laharana" column="MPIVAVAKA_LAHARANA"/>
+		<property name="anarana" column="MPIVAVAKA_ANARANA" not-null="true"/>
+		<property name="fanampiny" column="MPIVAVAKA_FANAMPINY" />
+		<property name="datyTeraka" column="MPIVAVAKA_DATERAKA" type="date" />
+		<property name="toeranaTeraka" column="MPIVAVAKA_TOETERAKA" />
+		<property name="lahy" column="MPIVAVAKA_LAHY" />
+		<property name="samihafa" column="MPIVAVAKA_SAMIHAFA" />
+
+		<!-- Kara-panondro -->
+		<property name="laharanaCIN" column="MPIVAVAKA_CIN" />
+		<property name="datyCIN" column="MPIVAVAKA_DATYCIN" />
+		<many-to-one name="taoCIN" column="MPIVAVAKA_TAO_CIN" class="Firaisana"/>
+		<property name="datyNanoloinaCIN" column="MPIVAVAKA_DATY_SOLO_CIN" />
+		<many-to-one name="taoNanoloinaCIN" column="MPIVAVAKA_TAO_SOLO_CIN" class="Firaisana"/>
+
+		<!-- Fianakaviana -->
+		<property column="MPIVAVAKA_RAY" name="ray" />
+		<property column="MPIVAVAKA_RENY" name="reny" />
+		<many-to-one column="MPIVAVAKA_RAY_ID" name="ray_" class="Mpivavaka" />
+		<many-to-one column="MPIVAVAKA_RENY_ID" name="reny_" class="Mpivavaka" />
+		<!-- Transféré dans Fanambadiana 
+		<many-to-one column="MPIVAVAKA_VADY_ID" name="vady_" class="Mpivavaka" />
+		 -->
+		 
+		<!-- Contact -->
+		<property name="mailaka" column="MPIVAVAKA_MAILAKA" />
+		<property name="tel" column="MPIVAVAKA_TEL" />
+		<property name="adresse" column="MPIVAVAKA_ADRESSE" />
+		<many-to-one column="FIRAISANA_ID" name="firaisana" class="Firaisana" />
+		<many-to-one column="FARITRA_ID" name="faritra" class="Faritra" />
+
+		
+		<!-- Asa sy talenta -->
+		<many-to-one column="MPIVAVAKA_ASA" name="antonAsa" class="AntonAsa" />
+		<property name="talenta" column="MPIVAVAKA_TALENTA" />
+ 		
+		<!-- info de création  -->
+		<property name="dateCreation" column="MPIVAVAKA_DATECREATION" type="date" not-null="true"/>
+		<many-to-one column="MPIVAVAKA_USERCREATOR" name="userCreator" class="User" not-null="true"/>
+		
+		<!-- info de modification  -->
+		<property name="dateLastModification" column="MPIVAVAKA_DATEMODIF" type="date"/>
+		<many-to-one column="MPIVAVAKA_USERMODIF" name="userLastModification" class="User" />
+
+		<set name="fanambadianas" table="MANAMBADY">
+			<key column="MPIVAVAKA_ID" update="false"/>
+			<many-to-many column="FANAMBADIANA_ID" class="Fanambadiana"/>
+		</set>
+		
+		<set name="trangas" table="TRANGA" inverse="true" cascade="all-delete-orphan" >
+			<key column="MPIVAVAKA_ID"/>
+			<one-to-many class="Tranga"/>
+		</set>
+
+		<set name="diakonas" table="DIAKONA" inverse="true" cascade="all-delete-orphan" >
+			<key column="MPIVAVAKA_ID"/>
+			<one-to-many class="Diakona"/>
+		</set>
+
+		<set name="mpikambanas" table="MPIKAMBANA" inverse="true" cascade="all-delete-orphan" >
+			<key column="MPIKAMBANA_ID"/>
+			<one-to-many class="Mpikambana"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Fanambadiana" table="FANAMBADIANA">
+		<id	column="FANAMBADIANA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<property name="daty" column="FANAMBADIANA_DATY" />
+		<property name="laharana" column="FANAMBADIANA_LAHARANA" />		
+		<many-to-one column="MPIVAVAKA_ID" name="mpivavaka" class="Mpivavaka" />
+		<many-to-one name="fitandremana" column="FITANDREMANA_ID" class="Fitandremana" not-null="true" />		
+
+		<!-- Raha mbola tsy voasoratra ho Mpivavaka ao anaty base de données ilay vaddy dia raisina ny anarany ao @ champs anaranaVady
+			 Fa raha efa voasoratra kosa dia ilay maha Mpivavaka azy no raisina @ alalan'ny champs vady -->		
+		<property column="ANARANA_VADY" name="anaranaVady" />
+		<many-to-one name="vadyForPersistence" column="VADY_ID" class="Mpivavaka" />
+		
+		<property name="datySoratra" column="DATY_SORATRA" type="date"/>
+		<property name="isanJanakaLahy" column="ZANAKA_LAHY_ISA" />
+		<property name="isanJanakaVavy" column="ZANAKA_VAVY_ISA" />
+		<property name="isanJanakaVitaBatisa" column="ZANAKA_VITA_BATISA" />
+		<property name="isanJanakaMpandray" column="ZANAKA_MPANDRAY" />
+
+		<!-- info de création  -->
+		<property name="dateCreation" column="DATECREATION" type="date" not-null="true"/>
+		<many-to-one column="USERCREATOR" name="userCreator" class="User" not-null="true"/>
+		
+		<!-- info de modification  -->
+		<property name="dateLastModification" column="DATEMODIF" type="date"/>
+		<many-to-one column="USERMODIF" name="userLastModification" class="User" />
+				
+	</class>
+</hibernate-mapping>

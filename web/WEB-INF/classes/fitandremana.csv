@@ -1,0 +1,8 @@
+insert into fitandremana (FITANDREMANA_ID,FITANDREMANA_LABEL,FITANDREMANA_DESCR,FITANDREMANA_ADRESSE,SYNODAMPA_ID)
+values
+(1,"Ankadifotsy","Eo akaikin'ny sinibe an-drano","Lot IV",2),
+(2,"Amparibe","FJKM Amparibe Famonjena","",2),
+(3,"Andravoahangy Fivavahana","FJKM Andravoahangy Fivavahana","Andravoahangy ambony",2),
+(4,"Katedraly Analakely","FJKM Analakely","Analakely Antananarivo",2),
+(5,"Ambalavao Isotry","FJKM Ambalavao Isotry","Ambalavao Isotry",1),
+(6,"Masombahiny Mantasoa","FJKM Masombahiny Mantasoa","Ambalavao Masombahiny Mantasoa",1);

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="FanisamBato" table="FANISAMBATO">
+		<id	column="FANISAMBATO_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<many-to-one column="FIFIDIANANA_ID" name="fifidianana" class="Fifidianana" not-null="true"/>
+		<property name="isamBatoFotsy" column="FANISAMBATO_VATOFOTSY" />
+		<property name="isamBatoMaty" column="FANISAMBATO_VATOMATY" />
+		<property name="isamBatoVoaisa" column="FANISAMBATO_VATO_VOAISA" />
+		<property name="lehilahy" column="FANISAMBATO_LEHILAHY" />
+
+	</class>
+</hibernate-mapping>

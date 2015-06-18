@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Andraikitra" table="ANDRAIKITRA">
+		<id	column="ANDRAIKITRA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<property name="intitule" column="ANDRAIKITRA_INTITULE" not-null="true"/>
+		<property name="description" column="ANDRAIKITRA_DESCR" />
+
+	</class>
+</hibernate-mapping>

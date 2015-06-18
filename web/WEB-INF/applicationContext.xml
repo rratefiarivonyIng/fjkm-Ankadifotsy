@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="ISO_8859-1"?>
+<!DOCTYPE beans SYSTEM "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- fichier des paramètres -->
+	<bean id="applicationConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>WEB-INF/application.properties</value>
+		</property>
+	</bean>
+		
+	<!-- Source de données -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${fjkmAnkadifotsy.database.driver}</value>
+		</property>
+		<property name="url">
+			<!-- <value>jdbc:oracle:thin:@//${fjkmAnkadifotsy.database.server}:${fjkmAnkadifotsy.database.port}/${fjkmAnkadifotsy.database.name}</value>  -->
+		
+			<value>jdbc:mysql://${fjkmAnkadifotsy.database.server}/${fjkmAnkadifotsy.database.name}</value>
+		</property>
+		<property name="username">
+			<value>${fjkmAnkadifotsy.database.username}</value>
+		</property>
+		<property name="password">
+			<value>${fjkmAnkadifotsy.database.password}</value>
+		</property>
+	</bean>
+	
+	<!-- remplacer par les informations stockés dans les paramètres 
+	<bean id="nbElementPerPage" class="java.lang.Integer" >
+		<constructor-arg value="${parameter.nbElementPerPage}"/>
+	</bean>
+	 -->
+	 
+	<!-- session hibernate -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="mappingResources">
+			<list>
+				<!-- mapping des tables -->
+				<!-- <value>mg/dgi/nif/dao/hibernate.queries.hbm.xml</value>  -->
+				<value>mg/fjkm/ankadifotsy/bo/Andraikitra.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/AuthorizedIP.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/AntonAsa.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Authority.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Diakona.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Faritra.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Fanambadiana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/FanisamBato.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Fifidianana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Firaisana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Fitandremana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/KarazamPifidianana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/KarazaTranga.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/MirotsakaFidiana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Mpivavaka.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Mpikambana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Parameter.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/SampanAsa.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/SynodamParitra.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/TaomPanompoana.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Tranga.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/User.hbm.xml</value>
+				<value>mg/fjkm/ankadifotsy/bo/Vato.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+				<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props>
+		</property>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- gestion des transactions pour les méthodes de service -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- Template hibernate pour l'exécution des requêtes  -->
+	<bean id="hibernateTemplate" class="mg.fjkm.ankadifotsy.dao.FjkmHibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- =========== les beans de la couche d'accès aux données ========== -->
+	<bean id="abstractDao" abstract="true">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	
+	<bean id="fjkmAnkadifotsyDao" class="mg.fjkm.ankadifotsy.dao.FjkmAnkadifotsyMySQLDaoImpl" parent="abstractDao"/>
+	
+	<!-- =========== les beans de la couche service =========== -->
+	<bean id="abstractService" abstract="true">
+		<property name="transactionManager" ref="transactionManager"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="fjkmAnkadifotsyServiceImpl" class="mg.fjkm.ankadifotsy.service.FjkmAnkadifotsyServiceImpl">
+      	<property name="fjkmAnkadifotsyDao" ref="fjkmAnkadifotsyDao"/>
+	</bean>
+
+	<bean id="fjkmAnkadifotsyService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" parent="abstractService">
+		<property name="target" ref="fjkmAnkadifotsyServiceImpl"/>
+	</bean>	
+	
+		<!-- ****** START ACEGI Security Configuration *******-->
+	<!-- ======================== FILTER CHAIN ======================= -->
+
+	<!--  if you wish to use channel security, add "channelProcessingFilter," in front
+		of "httpSessionContextIntegrationFilter" in the list below -->
+	<bean id="filterChainProxy"
+		class="org.acegisecurity.util.FilterChainProxy">
+		<property name="filterInvocationDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT
+				/**=httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
+			</value>
+		</property>
+	</bean>
+
+	<!-- Start Security filter config -->
+	
+	<bean id="exceptionTranslationFilter"
+		class="org.acegisecurity.ui.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint">
+			<ref bean="formLoginAuthenticationEntryPoint" />
+		</property>
+		<property name="accessDeniedHandler">
+			<bean
+				class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/accessDenied.jsp" />
+			</bean>
+		</property>		
+	</bean>
+
+	<!-- Define filter to handle BASIC authentication -->
+	<bean id="basicProcessingFilter"
+		class="org.acegisecurity.ui.basicauth.BasicProcessingFilter">
+		<property name="authenticationManager">
+			<ref bean="authenticationManager" />
+		</property>
+		<property name="authenticationEntryPoint">
+			<ref bean="authenticationEntryPoint" />
+		</property>
+	</bean>
+
+	<!-- Define realm for BASIC login-->
+	<bean id="authenticationEntryPoint"
+		class="org.acegisecurity.ui.basicauth.BasicProcessingFilterEntryPoint">
+		<property name="realmName">
+			<value>FJKM Ankadifotsy Realm</value>
+		</property>
+	</bean>
+
+	<!-- Define filter to handle FORM authentication -->
+	<bean id="formAuthenticationProcessingFilter"
+		class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+		<property name="filterProcessesUrl">
+			<value>/j_acegi_security_check</value>
+		</property>
+		<property name="authenticationFailureUrl">
+			<value>/login.jsp?failed</value>
+		</property>
+		<property name="defaultTargetUrl">
+			<value>/secure/index.htm</value>
+		</property>
+		<property name="authenticationManager">
+			<ref bean="authenticationManager" />
+		</property>
+	</bean>
+    
+	<!-- Define realm for FORM login-->
+
+	<bean id="formLoginAuthenticationEntryPoint"
+		class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+		<property name="loginFormUrl">
+			<value>/login.jsp</value>
+		</property>
+		<property name="forceHttps">
+			<value>false</value>
+		</property>
+	</bean>
+
+ 	<!-- 
+	<bean id="formLoginAuthenticationEntryPoint" 
+		class="mg.fjkm.ankadifotsy.security.FjkmAnkadifotsyAuthenticationProcessingFilterEntryPoint">
+		<property name="loginFormUrl">
+			<value>/login.jsp</value>
+		</property>
+		<property name="forceHttps">
+			<value>false</value>
+		</property>
+	</bean>
+    -->
+	
+	<bean id="httpSessionContextIntegrationFilter"
+		class="org.acegisecurity.context.HttpSessionContextIntegrationFilter">
+	</bean>
+	<!-- End Security filter config -->
+
+	<!-- Start Security interceptor config -->
+	<!-- Define authentication manager, decision manager and secure URL patterns -->
+	<bean id="filterSecurityInterceptor"
+		class="org.acegisecurity.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager">
+			<ref bean="authenticationManager" />
+		</property>
+		<property name="accessDecisionManager">
+			<ref bean="accessDecisionManager" />
+		</property>
+		<property name="objectDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT 
+				/secure/**=ROLE_MODIFY
+				/admin/**=ROLE_ADMIN
+			</value>
+		</property>
+	</bean>
+	<!-- End Security interceptor config -->
+
+	<!-- Start authentication config -->
+	<bean id="authenticationManager"
+		class="org.acegisecurity.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref bean="daoAuthenticationProvider" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="daoAuthenticationProvider" class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService">
+			<ref bean="userDetailsService" />
+		</property>
+		<property name="passwordEncoder"><bean class="org.acegisecurity.providers.encoding.Md5PasswordEncoder"/></property>
+	</bean>
+
+	<!-- Authentication using In-memory Dao -->
+	
+	<!-- 
+	<bean id="userDetailsService"
+		class="org.acegisecurity.userdetails.memory.InMemoryDaoImpl">
+		<property name="userMap">
+			<value>
+				rija=rija,ROLE_MODIFY
+				bouerj=ineedsleep,ROLE_INSTITUTION
+			</value>
+		</property>
+	</bean>
+	-->
+
+	<bean id="userDetailsService" class="org.acegisecurity.userdetails.jdbc.JdbcDaoImpl">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="usersByUsernameQuery">
+			<value>select usr_login, usr_password, 1  from users where usr_login=?</value>
+		</property>
+		<property name="authoritiesByUsernameQuery">
+			<value>select usr_login, authority from authorities where usr_login=?</value>
+		</property>
+	</bean>	 
+	
+	<!-- Authentication using JDBC Dao -->
+	<!-- <bean id="userDetailsService" class="org.acegisecurity.userdetails.jdbc.JdbcDaoImpl">
+		<property name="dataSource">
+		<ref bean="dataSource"/>
+		</property>
+		</bean>
+	-->
+	<!-- End authentication config -->
+
+	<!-- Start authorization config -->
+	<bean id="accessDecisionManager"
+		class="org.acegisecurity.vote.UnanimousBased">
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="roleVoter" class="org.acegisecurity.vote.RoleVoter">
+		<property name="rolePrefix">
+			<value>ROLE_</value>
+		</property>
+	</bean>
+	<!-- End authorization config -->
+
+	<!-- ****** END ACEGI Security Configuration *******-->
+	
+	<!-- ****** upload file *************** -->
+    <!-- Configure the multipart resolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="100000"/>
+    </bean>
+	<!-- ****** upload file *************** -->
+    	
+</beans>

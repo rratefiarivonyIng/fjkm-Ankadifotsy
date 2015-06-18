@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Parameter" table="PARAMETER">
+		<id	column="PARAMETER_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<many-to-one column="ID_USER" name="user" class="User" not-null="true"/>
+		<property name="nbElementPerPage" column="PARAMETER_NBELEMENT_PERPAGE" />
+		<property name="nbMirotsakaFidianaPerPage" column="PARAMETER_NBMIROTSAKAFIDIANA" />
+		<property name="nbTempResultVote" column="PARAMETER_NBTEMP_RESULT_VOTE" />
+
+	</class>
+</hibernate-mapping>

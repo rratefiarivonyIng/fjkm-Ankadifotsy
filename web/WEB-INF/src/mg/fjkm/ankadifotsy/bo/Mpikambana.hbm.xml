@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Mpikambana" table="MPIKAMBANA">
+		<id	column="MPIKAMBANA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<many-to-one column="MPIVAVAKA_ID" name="mpivavaka" class="Mpivavaka" not-null="true"/>
+		<many-to-one column="SAMPANASA_ID" name="sampanAsa" class="SampanAsa" not-null="true"/>
+		<many-to-one column="ANDRAIKITRA_ID" name="andraikitra" class="Andraikitra" not-null="true"/>
+		<many-to-one column="FITANDREMANA_ID" name="fitandremana" class="Fitandremana" not-null="true"/>
+		<many-to-one column="TAOMPANOMPOANA_ID" name="taomPanompoana" class="TaomPanompoana" not-null="true"/>
+
+	</class>
+</hibernate-mapping>

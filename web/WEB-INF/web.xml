@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>FJKM-Ankadifotsy</display-name>
+	
+	<servlet>
+		<servlet-name>fjkmAnkadifotsy</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- le chargeur du contexte spring de l'application -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- Valeur par défaut: /WEB-INF/applicationContext.xml -->
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	
+	<servlet-mapping>
+		<servlet-name>fjkmAnkadifotsy</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>fjkmAnkadifotsy</servlet-name>
+		<url-pattern>*.pdf</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>fjkmAnkadifotsy</servlet-name>
+		<url-pattern>*.csv</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>Acegi Filter Chain Proxy</filter-name>
+		<filter-class>
+			org.acegisecurity.util.FilterToBeanProxy
+		</filter-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>filterChainProxy</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Acegi Filter Chain Proxy</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>
+			index.jsp
+		</welcome-file>
+	</welcome-file-list>
+
+	<taglib>
+	  <taglib-uri>http://ajaxtags.org/tags/ajax</taglib-uri>
+	  <taglib-location>/WEB-INF/tlds/ajaxtags.tld</taglib-location>
+	</taglib>
+ 	
+ 	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/fmt.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/fmt-rt</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/fmt-1_0-rt.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/c.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core-rt</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/c-1_0-rt.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/sql</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/sql.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/sql-rt</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/sql-1_0-rt.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/x</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/x.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/x-rt</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/x-1_0-rt.tld</taglib-location>
+	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/fn</taglib-uri>
+		<taglib-location>/WEB-INF/tlds/fn.tld</taglib-location>
+	</taglib>
+ 	 	
+</web-app>

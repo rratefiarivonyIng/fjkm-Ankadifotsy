@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="MirotsakaFidiana" table="MIROTSAKAFIDIANA">
+		<id	column="MIROTSAKAFIDIANA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<many-to-one column="MPIVAVAKA_ID" name="mpivavaka" class="Mpivavaka" not-null="true"/>				
+		<many-to-one column="FIFIDIANANA_ID" name="fifidianana" class="Fifidianana" not-null="true"/>				
+				
+		<property name="datyNirotsahana" column="DATY_NIROTSAHANA" not-null="true" type="date"/>		
+		<property name="ekenaFirotsahana" column="MIROTSAKAFIDIANA_EKENA" />		
+		<property name="isamBato" column="MIROTSAKAFIDIANA_ISAMBATO" />		
+		<property name="laharanaMpirotsaka" column="MIROTSAKAFIDIANA_LAHARANA" />		
+		<property name="fanamarihana" column="MIROTSAKAFIDIANA_FANAMARIHANA" />		
+
+		<!-- info de création  -->
+		<property name="dateCreation" column="DATECREATION" type="date" not-null="true"/>
+		<many-to-one column="USERCREATOR" name="userCreator" class="User" not-null="true"/>
+		
+		<!-- info de modification  -->
+		<property name="dateLastModification" column="DATEMODIF" type="date"/>
+		<many-to-one column="USERMODIF" name="userLastModification" class="User" />
+
+	</class>
+</hibernate-mapping>

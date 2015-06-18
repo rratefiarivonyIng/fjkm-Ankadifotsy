@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="AuthorizedIP" table="AUTHORIZED_IP">
+		<id	column="AUTHORIZED_IP_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<property name="ip" column="AUTHORIZED_IP" not-null="true"/>
+		<property name="description" column="AUTHORIZED_IP_DESCR" />
+		<property name="authorized" column="AUTHORIZED" />
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.dgi.nif.bo">
+	<class name="Region" table="REGION">
+		<id	column="ID_REGION"	name="id">
+			<generator class="assigned"/>
+		</id>
+
+		<property name="intitule" column="RGN_REGION" not-null="true"/>
+		
+		<many-to-one column="ID_PROVINCE" name="province" class="Province" />		
+	</class>
+</hibernate-mapping>

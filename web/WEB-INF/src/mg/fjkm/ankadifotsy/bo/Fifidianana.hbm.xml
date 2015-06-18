@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="mg.fjkm.ankadifotsy.bo">
+	<class name="Fifidianana" table="FIFIDIANANA">
+		<id	column="FIFIDIANANA_ID"	name="id">
+			<generator class="increment"/>
+		</id>
+
+		<many-to-one column="KARAZAMPIFIDIANANA_ID" name="karazamPifidianana" class="KarazamPifidianana" not-null="true"/>				
+		<many-to-one column="TAONA_ID" name="taomPanompoana" class="TaomPanompoana" not-null="true"/>				
+		<many-to-one column="FITANDREMANA_ID" name="fitandremana" class="Fitandremana" not-null="true"/>				
+		
+		<property name="label" column="FIFIDIANANA_LABEL" not-null="true"/>		
+		
+		<property name="datyManombokaFirotsahana" column="DATY_MANOMBOKA_FIROTSAHANA" not-null="true" type="date" />		
+		<property name="datyMamaranaFirotsahana" column="DATY_MAMARANA_FIROTSAHANA" not-null="true" type="date" />		
+		<property name="datyManakatona" column="DATY_MANAKATONA" type="date" />		
+		<property name="datyFifidianana" column="DATY_FIFIDIANANA" type="date" />		
+		<property name="datyFanisambato" column="DATY_FANISAMBATO" type="date" />		
+		<property name="fifidiananaOloTokana" column="FIFIDIANANA_OLONA_TOKANA" not-null="true"/>
+		<property name="isaOlonaFidiana" column="FIFIDIANANA_ISA_OLONA_FIDIANA" />
+		<property name="isan_Nomerao" column="FIFIDIANANA_ISAN_NOMERAO" />
+		<property name="mitohyLaharana" column="FIFIDIANANA_MITOHY_LAHARANA" />
+		<property name="manomboka" column="MANOMBOKA" />
+
+		<!-- info de création  -->
+		<property name="dateCreation" column="DATECREATION" type="date" not-null="true"/>
+		<many-to-one column="USERCREATOR" name="userCreator" class="User" not-null="true"/>
+		
+		<!-- info de modification  -->
+		<property name="dateLastModification" column="DATEMODIF" type="date"/>
+		<many-to-one column="USERMODIF" name="userLastModification" class="User" />
+
+	</class>
+</hibernate-mapping>
